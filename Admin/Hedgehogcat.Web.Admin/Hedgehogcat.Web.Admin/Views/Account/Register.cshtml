@@ -1,0 +1,83 @@
+﻿@using Hedgehogcat.Web.Admin.Models
+@model RegisterAccountViewModel
+@{
+    ViewBag.Title = "注册新会员";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | 注册页面</title>
+
+  <!-- 离线 Google 字体: Source Sans Pro -->
+  <link rel="stylesheet" href="~/AdminLTE/dist/css/google.css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="~/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="~/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- 主题样式 -->
+  <link rel="stylesheet" href="~/AdminLTE/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">注册新会员</p>
+
+    @*  <form action="../../index.html" method="post">*@
+		    @using(Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+				@Html.AntiForgeryToken()
+        <div class="input-group mb-3">
+           @Html.TextBoxFor(m => m.UserName, new { @class = "form-control",@placeholder="用户名" })
+			@Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+           @Html.PasswordFor(m => m.Password, new { @class = "form-control" ,@placeholder="密码"})
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="同意">
+              <label for="agreeTerms">
+               我同意这些<a href="#">条款</a>
+              </label>
+            </div>
+          </div>
+		   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">注册</button>
+          </div>
+          <!-- /.col -->
+        </div>
+     @* </form>*@
+      }
+      <a href="login.cshtml" class="text-center">我已经有账号了</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="~/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/AdminLTE/dist/js/adminlte.min.js"></script>
+</body>
+</html>

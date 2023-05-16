@@ -266,3 +266,4 @@ F:\2023\Admin\Hedgehogcat.Web.Admin\Hedgehogcat.Web.Admin\obj\Release\net6.0\Hed
 F:\2023\Admin\Hedgehogcat.Web.Admin\Hedgehogcat.Web.Admin\obj\Release\net6.0\Hedgehogcat.Web.Admin.genruntimeconfig.cache
 F:\2023\Admin\Hedgehogcat.Web.Admin\Hedgehogcat.Web.Admin\obj\Release\net6.0\ref\Hedgehogcat.Web.Admin.dll
 F:\2023\Admin\Hedgehogcat.Web.Admin\Hedgehogcat.Web.Admin\bin\Release\net6.0\Dockerfile
+F:\2023\Admin\Hedgehogcat.Web.Admin\Hedgehogcat.Web.Admin\bin\Release\net6.0\wwwroot\adminlte\comic.ttf

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IokDPB/43vpEbCai74EyPHqezoSLd1tsnHtR634usKY=",
+  "Hash": "G3hmxmGV4+MhA17LeKnxfqMdyoEbecm+A/GpYemDQXM=",
   "Source": "Hedgehogcat.Web.Admin",
   "BasePath": "_content/Hedgehogcat.Web.Admin",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "F:\\2023\\Admin\\Hedgehogcat.Web.Admin\\Hedgehogcat.Web.Admin\\obj\\Release\\net6.0\\scopedcss\\projectbundle\\Hedgehogcat.Web.Admin.bundle.scp.css"
+    },
+    {
+      "Identity": "F:\\2023\\Admin\\Hedgehogcat.Web.Admin\\Hedgehogcat.Web.Admin\\wwwroot\\adminlte\\comic.ttf",
+      "SourceId": "Hedgehogcat.Web.Admin",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\2023\\Admin\\Hedgehogcat.Web.Admin\\Hedgehogcat.Web.Admin\\wwwroot\\",
+      "BasePath": "_content/Hedgehogcat.Web.Admin",
+      "RelativePath": "adminlte/comic.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\adminlte\\comic.ttf"
     },
     {
       "Identity": "F:\\2023\\Admin\\Hedgehogcat.Web.Admin\\Hedgehogcat.Web.Admin\\wwwroot\\adminlte\\dist\\css\\6xK1dSBYKcSV-LCoeQqfX1RYOo3qPZ7jsDJT9g.woff2",

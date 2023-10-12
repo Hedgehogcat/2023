@@ -34,19 +34,35 @@ namespace Hedgehogcat.Web.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-				#region 验证用户名密码
-				var currentAccount = _accountService.GetAccount(model);
-				if (currentAccount== null)
+                //1.验证验证码
+                var checkCode = base.HttpContext.Session.GetString("CheckCode");
+                if (checkCode == null || checkCode.ToString().Equals(model.CheckCode, StringComparison.InvariantCultureIgnoreCase) == false)
                 {
-                    ModelState.AddModelError("", "用户名或者密码错误");
+                    ModelState.AddModelError("CheckCode", "验证码输入错误");
                     return View();
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
-                }
-                #endregion
+                    #region 验证用户名密码
+                    var currentAccount = _accountService.GetAccount(model);
+                    if (currentAccount == null)
+                    {
+                        ModelState.AddModelError("", "用户名或者密码错误");
+                        return View();
+                    }
+                    else
+                    {
+                        var currentAccountstr = currentAccount.ToString();
+                        base.HttpContext.Session.SetString("CurrentUser12", currentAccount.ToString());
 
+                        HttpContext.Response.Cookies.Append("username", currentAccount.Username);
+                        HttpContext.Response.Cookies.Append("password", currentAccount.Id.ToString());
+
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                    #endregion
+                }
             }
             else
             {
@@ -92,7 +108,7 @@ namespace Hedgehogcat.Web.Admin.Controllers
                 return View(register);
             }
         }
-       /// <summary>
+        /// <summary>
         /// 声场验证码
         /// </summary>
         public IActionResult VerifyCode()
@@ -101,7 +117,7 @@ namespace Hedgehogcat.Web.Admin.Controllers
             int height = 35;
             int fontsize = 25;
             var (code, bytes) = VCode.CreateValidateGraphic(4, width, height, fontsize);
-            base.HttpContext.Session.SetString("CheckCode",code);
+            base.HttpContext.Session.SetString("CheckCode", code);
             return File(bytes, "image/jpeg");
         }
     }

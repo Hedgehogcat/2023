@@ -37,10 +37,10 @@ namespace Hedgehogcat.Web.Admin
             }
 
             // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
+         /*   if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-            }
+            }*/
             app.UseStaticFiles();
 
             app.UseRouting();

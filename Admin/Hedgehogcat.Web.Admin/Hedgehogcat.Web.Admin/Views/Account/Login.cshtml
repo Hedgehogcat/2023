@@ -36,7 +36,7 @@
 			@Html.AntiForgeryToken()
         <div class="input-group mb-3">
           @*<input type="email" class="form-control" placeholder="邮箱">*@
-		    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control",@placeholder="用户名" })
+		    @Html.TextBoxFor(m => m.UserName, new { @id="username", @class = "form-control",@placeholder="用户名" })
 			@Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
           <div class="input-group-append">
             <div class="input-group-text">
@@ -46,7 +46,7 @@
         </div>
         <div class="input-group mb-3">
           @*<input type="password" class="form-control" placeholder="密码">*@
-		    @Html.PasswordFor(m => m.Password, new { @class = "form-control" ,@placeholder="密码"})
+		    @Html.PasswordFor(m => m.Password, new { @id="password",@class = "form-control" ,@placeholder="密码"})
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
           <div class="input-group-append">
             <div class="input-group-text">
@@ -86,6 +86,8 @@
           <!-- /.col -->
         </div>
       }
+
+
       <!-- /.social-auth-links -->
       @*<p class="mb-1">
         <a href="forgot-password.html">忘记密码</a>
@@ -107,7 +109,33 @@
 <!-- AdminLTE App -->
 <script src="~/adminlte/dist/js/adminlte.min.js"></script>
 <script src="~/adminlte/dist/js/adminlte.min.js"></script>
+
+	 
 <script>
+
+window.onload = function() {
+    console.log(getCookie("RememberMe"));
+    $("#username").val(getCookie("username"));
+    $("#password").val(getCookie("password"));
+};
+
+	function getCookie(cookieName) {
+        var totalCookie = document.cookie;
+        var cookieStartAt = totalCookie.indexOf(cookieName + "=");
+        if (cookieStartAt == -1) {
+            return;
+        }
+        var valueStartAt = totalCookie.indexOf("=", cookieStartAt) + 1;
+        var valueEndAt = totalCookie.indexOf(";", cookieStartAt);
+        if (valueEndAt == -1) {
+            valueEndAt = totalCookie.length;
+        }
+        var cookieValue = unescape(totalCookie.substring(valueStartAt, valueEndAt));
+        return cookieValue;
+    }
+</script>
+
+<script type="text/javascript">
 	 $("#captchImg").click(function () {
                 var newSrc = "@Url.Action("VerifyCode", "Account")" + "?t=" + (new Date()).getTime();
                    this.src=newSrc;

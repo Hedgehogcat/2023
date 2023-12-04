@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Hedgehogcat.Web.Admin.Services;
 using System.Drawing;
 using Hedgehogcat.Web.Admin.Helpers;
+using Newtonsoft.Json;
 
 namespace Hedgehogcat.Web.Admin.Controllers
 {
@@ -12,9 +13,13 @@ namespace Hedgehogcat.Web.Admin.Controllers
     {
         private IAccountService _accountService;
 
-        public AccountController(IAccountService accountService)
+        private readonly ILogger<AccountController> _logger;
+
+        public AccountController(IAccountService accountService,ILogger<AccountController> logger)
         {
             _accountService = accountService;
+            _logger = logger;
+
         }
         /// <summary>
         /// //返回一个页面：这个页面是用来展示登录的页面
@@ -32,6 +37,8 @@ namespace Hedgehogcat.Web.Admin.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
+            _logger.LogInformation("登录:"+JsonConvert.SerializeObject(model.UserName)+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
             if (ModelState.IsValid)
             {
                 //1.验证验证码
@@ -48,6 +55,7 @@ namespace Hedgehogcat.Web.Admin.Controllers
                     if (currentAccount == null)
                     {
                         ModelState.AddModelError("", "用户名或者密码错误");
+                        _logger.LogInformation("登录失败:"+JsonConvert.SerializeObject(model.UserName)+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                         return View();
                     }
                     else
@@ -57,9 +65,9 @@ namespace Hedgehogcat.Web.Admin.Controllers
 
                         HttpContext.Response.Cookies.Append("username", currentAccount.Username);
                         HttpContext.Response.Cookies.Append("password", currentAccount.Id.ToString());
+                        _logger.LogInformation("登录成功:"+JsonConvert.SerializeObject(model.UserName)+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
                         return RedirectToAction("Index", "Home");
-
                     }
                     #endregion
                 }

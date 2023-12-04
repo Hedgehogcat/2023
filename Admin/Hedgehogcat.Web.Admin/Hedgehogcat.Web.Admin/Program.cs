@@ -1,6 +1,7 @@
 using Hedgehogcat.Web.Admin.Entities;
 using Hedgehogcat.Web.Admin.Helpers;
 using Hedgehogcat.Web.Admin.Services;
+using Serilog;
 
 namespace Hedgehogcat.Web.Admin
 {
@@ -8,8 +9,20 @@ namespace Hedgehogcat.Web.Admin
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
 
+            Log.Logger = new LoggerConfiguration()
+                        .ReadFrom.Configuration(configuration)
+                        .WriteTo.Exceptionless()
+                        .CreateLogger();
+
+            Log.Information("»’÷æ");
+
+            var builder = WebApplication.CreateBuilder(args);
+            builder.Host.UseSerilog();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

@@ -19,7 +19,7 @@ namespace Hedgehogcat.Web.Admin
                         .WriteTo.Exceptionless()
                         .CreateLogger();
 
-            Log.Information("ÈÕÖ¾");
+            Log.Information("æ—¥å¿—");
 
             var builder = WebApplication.CreateBuilder(args);
             builder.Host.UseSerilog();
